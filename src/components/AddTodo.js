@@ -7,7 +7,8 @@ const AddTodo = ({ onAddToDo }) =>
     const handleSubmit = (e) =>
     {
         e.preventDefault();
-        if (!newTodo) return;
+        //prevent blank spaces
+        if (!newTodo.trim()) return;
 
         //send new todo 
         onAddToDo(newTodo);

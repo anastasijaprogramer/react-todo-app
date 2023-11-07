@@ -12,7 +12,6 @@ const AddTodo = ({ onAddTodo }) =>
 
         //send new todo 
         onAddTodo(newTodo);
-        //clear input field
         setnewTodo("");
     }
 

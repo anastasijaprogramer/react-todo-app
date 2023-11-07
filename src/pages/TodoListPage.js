@@ -6,6 +6,7 @@ const TodoListPage = () =>
 
     return (
         <div>
+            <h1>Todo List</h1>
             <ul className="result-list">
                 {savedTodos.map((todo) =>
                 {

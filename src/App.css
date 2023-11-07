@@ -15,8 +15,32 @@
   margin-top: 32px;
   width: 100%;
   margin-inline: auto;
-  max-width: 725px;
+  max-width: 765px;
+  padding: 0 20px 32px;
 }
+
+form{
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+/* input field */
+.add-todo-input{
+  min-height: 46px;
+  padding: 12px 16px 12px 16px;
+
+  border-radius: 8px;
+  outline: none;
+  background-color: transparent;
+  color: #dadce0;
+  border:1px solid #5f6368;
+  max-width: 600px;
+  width: 100%;
+  font-size: .875rem;
+  line-height: 1.25rem;
+}
+
 
 /* result list */
  .result-list{
@@ -48,6 +72,10 @@
   font-size: 18px;
   font-weight: 400;
   color: #dadce0;
+}
+
+.label:hover{
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.6),0 1px 3px 1px rgba(0,0,0,0.302);
 }
 
 input{
@@ -84,20 +112,6 @@ input{
 }
 
 
-/* input field */
-.add-todo-input{
-  min-height: 46px;
-  padding: 12px 16px 12px 16px;
-  margin-bottom: 32px;
-  border-radius: 8px;
-  outline: none;
-  background-color: transparent;
-  color: #dadce0;
-  border:1px solid #5f6368;
-  width: 600px;
-  font-size: .875rem;
-  line-height: 1.25rem;
-}
 
 .route-list{
   display: flex;
@@ -107,6 +121,39 @@ input{
   padding: 0;
 }
 
+.button-wrapper{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+
 .route a{
   color: #dadce0;
+}
+
+
+/* responsive */
+
+@media (max-width: 600px) {
+  .list-item{
+    flex-wrap: wrap;
+  }
+
+  .label{
+    flex-grow: 1;
+  }
+
+  .button-wrapper{
+    margin-left: 30px;
+  }
+
+  .list-item{
+    gap: 10px;
+  }
+
+  .result-list{
+gap: 25px;
+  }
+  
 }

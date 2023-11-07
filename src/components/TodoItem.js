@@ -29,23 +29,28 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
 
     return (
         <li className='list-item'>
+
             <input type="checkbox" onChange={handleChecked} checked={isChecked} />
             {isEditing ?
                 (<input value={updatedToDo}
                     onChange={(e) => setUpdatedToDo(e.target.value)}
-                    className={isChecked ? "checked label" : 'label'} />)
+                    className={isChecked ? "checked label" : 'label'}
+                    maxLength="20" />)
                 :
                 (<label className={isChecked ? "checked label" : 'label'}>{updatedToDo}</label>)
             }
-            <button onClick={handleUpdate}
-                type="button" className="btn btn--edit" >
-                {isEditing ? "Save" : "Edit"}
-            </button>
-            <button onClick={handleDelete}
-                type="button" className="btn btn--delete">
-                Delete
-            </button>
-        </li>
+
+            <div className='button-wrapper'>
+                <button onClick={handleUpdate}
+                    type="button" className="btn btn--edit" >
+                    {isEditing ? "Save" : "Edit"}
+                </button>
+                <button onClick={handleDelete}
+                    type="button" className="btn btn--delete">
+                    Delete
+                </button>
+            </div>
+        </li >
     );
 }
 

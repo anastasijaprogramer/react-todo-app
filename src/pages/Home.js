@@ -7,10 +7,17 @@ const Home = () =>
     // get todos list
     const [todos, setTodos] = useState(() =>
     {
-        const savedTodos = localStorage.getItem('todos');
-        const parsedTodos = savedTodos ? JSON.parse(savedTodos) : [];
-        return parsedTodos.slice(0, 10);  // ensures only the first 10 items are set
+        try {
+            const savedTodos = localStorage.getItem('todos');
+            const parsedTodos = savedTodos ? JSON.parse(savedTodos) : [];
+            return parsedTodos.slice(0, 10); // ensures only the first 10 items are set
+
+        } catch (error) {
+            console.error("Failed to load todos: ", error);
+            return [];
+        }
     });
+
 
     // save todos to local storage on change
     useEffect(() =>
@@ -28,7 +35,6 @@ const Home = () =>
         }
 
         setTodos([...todos, { id: Date.now(), text: newTodo, isCompleted: false }])
-
     }
 
     // handle delete todo

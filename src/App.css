@@ -13,6 +13,9 @@
 
 .app-wrapper{
   margin-top: 32px;
+  width: 100%;
+  margin-inline: auto;
+  max-width: 725px;
 }
 
 /* result list */
@@ -20,7 +23,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  margin-top: 32px;
+
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -39,10 +42,10 @@
   border:1px solid #5f6368;
   border-radius: 8px;
   width: 240px;
+  height: 48px;
   padding: 12px 16px 12px 16px;
   display: block;
   font-size: 18px;
-  line-height: 24px;
   font-weight: 400;
   color: #dadce0;
 }
@@ -64,7 +67,6 @@ input{
   border:1px solid #5f6368;
   outline: none;
  font-size: .875rem;
- line-height: 1.25rem;
  font-weight: 500;
  min-width: 105px;
  height: 36px;
@@ -86,6 +88,7 @@ input{
 .add-todo-input{
   min-height: 46px;
   padding: 12px 16px 12px 16px;
+  margin-bottom: 32px;
   border-radius: 8px;
   outline: none;
   background-color: transparent;
@@ -94,4 +97,16 @@ input{
   width: 600px;
   font-size: .875rem;
   line-height: 1.25rem;
+}
+
+.route-list{
+  display: flex;
+  gap: 20px;
+  list-style-type: none;
+  margin: 15px 0;
+  padding: 0;
+}
+
+.route a{
+  color: #dadce0;
 }

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
-const TodoItem = ({ todo, onDeleteTodo, onUpdateToDo, onCompleteToDo }) =>
+const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
 {
-    const [isChecked, setIsChecked] = useState(false);
+    const [isChecked, setIsChecked] = useState(todo.isCompleted);
     const [isEditing, setIsEditing] = useState(false);
     const [updatedToDo, setUpdatedToDo] = useState(todo.text);
 
     useEffect(() =>
     {
-        onCompleteToDo(todo.id, isChecked);
+        onCompleteTodo(todo.id, isChecked);
     }, [isChecked]);
 
     const handleChecked = () =>
@@ -23,13 +23,13 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateToDo, onCompleteToDo }) =>
 
     const handleUpdate = () =>
     {
-        onUpdateToDo(todo.id, updatedToDo);
+        onUpdateTodo(todo.id, updatedToDo);
         setIsEditing(!isEditing);
     }
 
     return (
         <li className='list-item'>
-            <input type="checkbox" onClick={handleChecked} />
+            <input type="checkbox" onChange={handleChecked} checked={isChecked} />
             {isEditing ?
                 (<input value={updatedToDo}
                     onChange={(e) => setUpdatedToDo(e.target.value)}

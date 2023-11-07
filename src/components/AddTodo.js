@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AddTodo = ({ onAddToDo }) =>
+const AddTodo = ({ onAddTodo }) =>
 {
     const [newTodo, setnewTodo] = useState('');
 
@@ -11,7 +11,7 @@ const AddTodo = ({ onAddToDo }) =>
         if (!newTodo.trim()) return;
 
         //send new todo 
-        onAddToDo(newTodo);
+        onAddTodo(newTodo);
         //clear input field
         setnewTodo("");
     }

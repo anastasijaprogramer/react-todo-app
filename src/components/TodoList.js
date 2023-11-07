@@ -1,17 +1,16 @@
 import React from 'react';
 import TodoItem from './TodoItem';
 
-const TodoList = ({ toDos, onDeleteTodo, onUpdateToDo, onCompleteToDo }) =>
+const TodoList = ({ todos, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
 {
-
     return (
         <ul className='result-list'>
-            {toDos.map(todo => (
+            {todos.map(todo => (
                 <TodoItem key={todo.id}
                     todo={todo}
                     onDeleteTodo={onDeleteTodo}
-                    onUpdateToDo={onUpdateToDo}
-                    onCompleteToDo={onCompleteToDo} />
+                    onUpdateTodo={onUpdateTodo}
+                    onCompleteTodo={onCompleteTodo} />
             ))}
         </ul>
     );

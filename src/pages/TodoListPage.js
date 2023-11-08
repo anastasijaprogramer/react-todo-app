@@ -23,7 +23,7 @@ const TodoListPage = () =>
                     return (
                         <li className='list-item'
                             key={todo.id}>
-                            <label className='label'>{todo.text}</label>
+                            <label className={todo.isCompleted ? "checked label" : 'label'}>{todo.text}</label>
                         </li>
                     )
                 })}

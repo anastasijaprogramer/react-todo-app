@@ -1,18 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, createContext, useContext } from 'react';
+import { TodosContext } from '../contexts/TodosContext';
+
 
 const TodoListPage = () =>
 {
-    const [todos, setTodos] = useState(() =>
-    {
-        try {
-            const savedTodos = localStorage.getItem('todos');
-            const parsedTodos = savedTodos ? JSON.parse(savedTodos) : [];
-            return parsedTodos.slice(0, 10); // Ensures only the first 10 items are set
-        } catch (error) {
-            console.error("Failed to load todos: ", error);
-            return [];
-        }
-    });
+    const { todos } = useContext(TodosContext);
 
     return (
         <div>

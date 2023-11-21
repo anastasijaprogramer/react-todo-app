@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "./todoItem.scss";
 
 const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
 {

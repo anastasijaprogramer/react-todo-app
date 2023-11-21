@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import AddTodo from '../components/AddTodo/AddTodo';
-import TodoList from '../components/TodoList';
+import TodoList from '../components/TodoList/TodoList';
 import { TodosContext } from "../contexts/TodosContext"
 
 

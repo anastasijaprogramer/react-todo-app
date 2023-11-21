@@ -1,5 +1,6 @@
 import React from 'react';
-import TodoItem from './TodoItem';
+import TodoItem from '../TodoItem/TodoItem';
+import "./todoList.scss";
 
 const TodoList = ({ todos, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
 {

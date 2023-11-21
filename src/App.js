@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from "./containers/Home";
 import TodoListPage from "./containers/TodoListPage";
 import { TodosProvider } from './contexts/TodosContext';
-import './App.css';
+import './App.scss';
 
 
 function App()

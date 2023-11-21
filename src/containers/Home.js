@@ -1,12 +1,11 @@
-import React, { useState, useEffect, createContext, useContext } from 'react';
-import AddTodo from '../components/AddTodo';
+import React, { useEffect, useContext } from 'react';
+import AddTodo from '../components/AddTodo/AddTodo';
 import TodoList from '../components/TodoList';
 import { TodosContext } from "../contexts/TodosContext"
 
 
 const Home = () =>
 {
-    //const todos = useContext(TodosContext);
     const { todos, setTodos } = useContext(TodosContext);
 
     // save todos to local storage on change

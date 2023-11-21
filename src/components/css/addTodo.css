@@ -1,0 +1,14 @@
+/* input field */
+.add-todo-input {
+  min-height: 46px;
+  padding: 12px 16px 12px 16px;
+  border-radius: 8px;
+  outline: none;
+  background-color: transparent;
+  color: #dadce0;
+  border: 1px solid #5f6368;
+  max-width: 600px;
+  width: 100%;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}

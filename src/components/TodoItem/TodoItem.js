@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import "./todoItem.scss";
 
 const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
@@ -6,6 +6,8 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
     const [isChecked, setIsChecked] = useState(todo.isCompleted);
     const [isEditing, setIsEditing] = useState(false);
     const [updatedToDo, setUpdatedToDo] = useState(todo.text);
+    const [isOverLimit, setIsOverLimit] = useState(null);
+
 
     useEffect(() =>
     {
@@ -24,8 +26,24 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
 
     const handleUpdate = () =>
     {
-        onUpdateTodo(todo.id, updatedToDo);
         setIsEditing(!isEditing);
+
+        if (handleInputValidation(updatedToDo)) {
+            onUpdateTodo(todo.id, updatedToDo);
+        }
+    }
+
+    const handleInputValidation = (inputValue) =>
+    {
+        if (inputValue.trim()) {
+            if (inputValue.length <= 20) {
+                setIsOverLimit(false);
+            }
+            else {
+                setIsOverLimit(true);
+            }
+        }
+
     }
 
     return (
@@ -36,7 +54,7 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
                 (<input value={updatedToDo}
                     onChange={(e) => setUpdatedToDo(e.target.value)}
                     className={isChecked ? "checked label" : 'label'}
-                    maxLength="20" />)
+                />)
                 :
                 (<label className={isChecked ? "checked label" : 'label'}>{updatedToDo}</label>)
             }

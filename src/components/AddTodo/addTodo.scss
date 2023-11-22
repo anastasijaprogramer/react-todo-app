@@ -1,4 +1,5 @@
 form {
+    position: relative;
     display: flex;
     align-items: center;
     margin-bottom: 32px;
@@ -17,10 +18,23 @@ form {
         font-size: .875rem;
         line-height: 1.25rem;
 
+        &.error:focus {
+            border-color: red;
+        }
 
     }
 
     .btn--submit {
         margin-left: 20px;
+    }
+
+    .error-field {
+        position: absolute;
+        top: 100%;
+        padding-top: 5px;
+        font-weight: 400;
+        font-size: 12px;
+        padding-left: 17px;
+        color: red;
     }
 }

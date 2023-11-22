@@ -1,7 +1,8 @@
 import React, { useEffect, useContext } from 'react';
-import AddTodo from '../components/AddTodo/AddTodo';
-import TodoList from '../components/TodoList/TodoList';
-import { TodosContext } from "../contexts/TodosContext"
+import AddTodo from '../../components/AddTodo/AddTodo';
+import TodoList from '../../components/TodoList/TodoList';
+import { TodosContext } from "../../contexts/TodosContext";
+import "./home.scss";
 
 
 const Home = () =>
@@ -23,7 +24,6 @@ const Home = () =>
             return;
         }
 
-
         setTodos([...todos, { id: Date.now(), text: newTodo, isCompleted: false }])
     }
 
@@ -39,15 +39,10 @@ const Home = () =>
         setTodos(todos.map(todo => todo.id === id ? { ...todo, text: newText } : todo));
     }
 
-    // handle update todo
+    // handle complete todo
     const handleComplete = (id, isCompleted) =>
     {
-        const updatedTodos = todos.map(todo => todo.id === id ? { ...todo, isCompleted: isCompleted } : todo);
-
-        // a=true; b=false; which translate to 1-0=1 from boolean values
-        // if the result is positive 'b' comes before 'a'
-        const sortedTodos = updatedTodos.sort((a, b) => a.isCompleted - b.isCompleted);
-        setTodos(sortedTodos);
+        setTodos(todos.map(todo => todo.id === id ? { ...todo, isCompleted: isCompleted } : todo));
     }
 
     return (

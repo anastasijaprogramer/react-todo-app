@@ -24,40 +24,40 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
         onDeleteTodo(todo.id);
     }
 
+
     const handleUpdate = () =>
     {
-        setIsEditing(!isEditing);
-
-        if (handleInputValidation(updatedToDo)) {
+        //if input value is not empty, update
+        if (!isOverLimit && updatedToDo.trim()) {
+            setIsEditing(!isEditing);
             onUpdateTodo(todo.id, updatedToDo);
         }
+
     }
 
     const handleInputValidation = (inputValue) =>
     {
-        if (inputValue.trim()) {
-            if (inputValue.length <= 20) {
-                setIsOverLimit(false);
-            }
-            else {
-                setIsOverLimit(true);
-            }
-        }
-
+        setUpdatedToDo(inputValue);
+        inputValue.length <= 20 ? setIsOverLimit(false) : setIsOverLimit(true);
     }
 
     return (
         <li className='list-item'>
 
             <input type="checkbox" onChange={handleChecked} checked={isChecked} />
+
             {isEditing ?
-                (<input value={updatedToDo}
-                    onChange={(e) => setUpdatedToDo(e.target.value)}
-                    className={isChecked ? "checked label" : 'label'}
+                (<input
+                    value={updatedToDo}
+                    onChange={(e) => handleInputValidation(e.target.value)}
+                    className={`${isChecked ? "checked label" : 'label'}
+                                ${isOverLimit ? "error" : ''}`}
                 />)
                 :
                 (<label className={isChecked ? "checked label" : 'label'}>{updatedToDo}</label>)
             }
+            {isOverLimit && <span className='error-field'>Text must not exceed 20 characters</span>}
+
 
             <div className='button-wrapper'>
                 <button onClick={handleUpdate}

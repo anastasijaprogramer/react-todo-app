@@ -3,8 +3,9 @@ import "./addTodo.scss";
 
 const AddTodo = ({ onAddTodo }) =>
 {
-    const inputRef = useRef(null);
     const [isOverLimit, setIsOverLimit] = useState(null);
+
+    const inputRef = useRef(null);
 
     const handleSubmit = (e) =>
     {
@@ -23,10 +24,8 @@ const AddTodo = ({ onAddTodo }) =>
 
     }
 
-    const handleInputValidation = () =>
+    const handleInputValidation = (inputValue) =>
     {
-        const inputValue = inputRef.current.value;
-
         inputValue.length <= 20 ? setIsOverLimit(false) : setIsOverLimit(true);
     }
 
@@ -38,7 +37,7 @@ const AddTodo = ({ onAddTodo }) =>
                 ref={inputRef}
                 className={`add-todo-input ${isOverLimit ? "error" : ""}`}
                 placeholder='add todo'
-                onChange={handleInputValidation}
+                onChange={e => handleInputValidation(e.target.value)}
             />
             {isOverLimit && <span className='error-field'>Text must not exceed 20 characters</span>}
             <button type="submit" className='btn btn--submit' >

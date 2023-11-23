@@ -24,7 +24,6 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
         onDeleteTodo(todo.id);
     }
 
-
     const handleUpdate = () =>
     {
         //if input value is not empty, update

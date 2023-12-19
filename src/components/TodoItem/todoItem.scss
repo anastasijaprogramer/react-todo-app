@@ -21,6 +21,11 @@
             text-decoration: line-through;
         }
 
+        &.editing {
+            border-color: lightblue;
+            outline: lightblue
+        }
+
         &.error {
             border-color: red;
             outline: red

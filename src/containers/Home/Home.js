@@ -1,20 +1,15 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import AddTodo from '../../components/AddTodo/AddTodo';
 import TodoList from '../../components/TodoList/TodoList';
 import { TodosContext } from "../../contexts/TodosContext";
 import "./home.scss";
 
-
 const Home = () =>
 {
-    const { todos, setTodos } = useContext(TodosContext);
+    const { getTodos, setTodos } = useContext(TodosContext);
 
-    // save todos to local storage on change
-    useEffect(() =>
-    {
-        localStorage.setItem('todos', JSON.stringify(todos));
-    }, [todos]);
-
+    const todos = getTodos();
+    console.log(todos)
 
     // handle add todo
     const handleAdd = (newTodo) =>

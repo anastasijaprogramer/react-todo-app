@@ -1,23 +1,14 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext } from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 export const TodosContext = createContext();
 
 export const TodosProvider = ({ children }) =>
 {
-    const [todos, setTodos] = useState(() =>
-    {
-        try {
-            const savedTodos = localStorage.getItem('todos');
-            const parsedTodos = savedTodos ? JSON.parse(savedTodos) : [];
-            return parsedTodos.slice(0, 10);
-        } catch (error) {
-            console.error("Failed to load todos: ", error);
-            return [];
-        }
-    });
+    const [getTodos, setTodos] = useLocalStorage('todos', []);
 
     return (
-        <TodosContext.Provider value={{ todos, setTodos }}>
+        <TodosContext.Provider value={{ getTodos, setTodos }}>
             {children}
         </TodosContext.Provider>
     )

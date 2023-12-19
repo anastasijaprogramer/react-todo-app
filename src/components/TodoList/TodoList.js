@@ -4,8 +4,6 @@ import "./todoList.scss";
 
 const TodoList = ({ todos, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
 {
-    // a=true; b=false; which translate to 1-0=1 from boolean values
-    // if the result is positive 'b' comes before 'a'
 
     return (
         <ul className='result-list'>

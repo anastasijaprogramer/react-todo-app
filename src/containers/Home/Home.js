@@ -6,10 +6,8 @@ import "./home.scss";
 
 const Home = () =>
 {
-    const { getTodos, setTodos } = useContext(TodosContext);
+    const { todos, setTodos } = useContext(TodosContext);
 
-    const todos = getTodos();
-    console.log(todos)
 
     // handle add todo
     const handleAdd = (newTodo) =>

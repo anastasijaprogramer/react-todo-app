@@ -1,31 +1,37 @@
-function useLocalStorage()
+import { useState } from 'react';
+
+function useLocalStorage(key, initialValue)
 {
-    // Function to get a value from local storage
-    const getLocalStorage = (key) =>
+    // Initialize the state
+    const [storedValue, setStoredValue] = useState(() =>
     {
         try {
-            const item = localStorage.getItem(key);
-            return item ? JSON.parse(item) : [];
+            const item = window.localStorage.getItem(key);
+            // Parse stored json or, if none, return initialValue
+            return item ? JSON.parse(item) : initialValue;
         } catch (error) {
-            console.error("Error reading from localStorage", error);
-            return [];
+            // If error, return initialValue
+            console.log(error);
+            return initialValue;
         }
+    });
 
-    };
-
-    // Function to set a value in local storage
-    const setLocalStorage = (key, value) =>
+    // A wrapper function to update both state and local storage
+    const setLocalStorage = (value) =>
     {
         try {
-            localStorage.setItem(key, JSON.stringify(value));
+            // Allow value to be a function so we have the same API as useState
+            const valueToStore = value instanceof Function ? value(storedValue) : value;
+            // Save state
+            setStoredValue(valueToStore);
+            // Save to local storage
+            window.localStorage.setItem(key, JSON.stringify(valueToStore));
         } catch (error) {
-            console.error("Error writing to localStorage", error);
+            console.log(error);
         }
-
-
     };
 
-    return [getLocalStorage, setLocalStorage];
+    return [storedValue, setLocalStorage];
 }
 
 export default useLocalStorage;

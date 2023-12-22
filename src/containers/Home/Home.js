@@ -6,8 +6,8 @@ import "./home.scss";
 
 const Home = () =>
 {
-    const { todos, setTodos } = useContext(TodosContext);
-
+    const { getTodos, setTodos } = useContext(TodosContext);
+    const todos = getTodos();
 
     // handle add todo
     const handleAdd = (newTodo) =>
@@ -40,6 +40,7 @@ const Home = () =>
 
     return (
         <>
+
             <h1>Home</h1>
             <AddTodo onAddTodo={handleAdd} />
 

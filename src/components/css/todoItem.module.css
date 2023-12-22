@@ -1,11 +1,11 @@
-.list-item {
+.listItem {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 20px;
   position: relative;
 }
-.list-item .label {
+.listItem .label {
   background-color: #202124;
   border: 1px solid #5f6368;
   border-radius: 8px;
@@ -17,27 +17,27 @@
   font-weight: 400;
   color: #dadce0;
 }
-.list-item .label.checked {
+.listItem .label.checked {
   text-decoration: line-through;
 }
-.list-item .label.editing {
+.listItem .label.editing {
   border-color: lightblue;
   outline: lightblue;
 }
-.list-item .label.error {
+.listItem .label.error {
   border-color: red;
   outline: red;
 }
-.list-item .label:hover {
+.listItem .label:hover {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.6), 0 1px 3px 1px rgba(0, 0, 0, 0.302);
 }
-.list-item .button-wrapper {
+.listItem .buttonWrapper {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 20px;
 }
-.list-item .error-field {
+.listItem .errorField {
   position: absolute;
   top: 100%;
   padding-top: 5px;
@@ -46,15 +46,32 @@
   left: 40px;
   color: red;
 }
+.listItem .btn {
+  padding: 8px 24px;
+  color: #dadce0;
+  background-color: #202124;
+  border-radius: 4px;
+  border: 1px solid #5f6368;
+  outline: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  min-width: 105px;
+  height: 36px;
+}
+.listItem .btn:hover {
+  background-color: rgba(154, 160, 166, 0.122);
+  cursor: pointer;
+  font-weight: 500;
+}
 @media (max-width: 600px) {
-  .list-item {
+  .listItem {
     flex-wrap: wrap;
     gap: 10px;
   }
-  .list-item .label {
+  .listItem .label {
     flex-grow: 1;
   }
-  .list-item .button-wrapper {
+  .listItem .buttonWrapper {
     margin-left: 30px;
   }
 }

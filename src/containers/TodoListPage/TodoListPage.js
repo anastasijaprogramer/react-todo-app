@@ -4,7 +4,8 @@ import { TodosContext } from '../../contexts/TodosContext';
 
 const TodoListPage = () =>
 {
-    const { todos } = useContext(TodosContext);
+    const { getTodos } = useContext(TodosContext);
+    const todos = getTodos();
 
     return (
         <div>

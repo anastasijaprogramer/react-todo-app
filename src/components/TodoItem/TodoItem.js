@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "./todoItem.scss";
+import styles from './TodoItem.module.scss';
 import useValidator from '../../hooks/useValidator';
 
 const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
@@ -28,7 +28,7 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
     const handleUpdate = () =>
     {
         //checks if user clicked while error is loading and then check for error 
-        if (error.length == 0) {
+        if (error.length === 0) {
             setIsEditing(!isEditing);
             onUpdateTodo(todo.id, updatedToDo);
         }
@@ -48,7 +48,7 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
 
 
     return (
-        <li className='list-item'>
+        <li className={styles.listItem}>
 
             <input type="checkbox" onChange={handleChecked} checked={isChecked} />
 
@@ -56,23 +56,26 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
                 (<input
                     value={updatedToDo}
                     onChange={(e) => handleInputValidation(e.target.value)}
-                    className={`${isChecked ? "checked label" : 'label'}
-                                ${error.length ? "error" : ''}
-                                ${isEditing ? "editing" : ""}`}
+                    className={`${isChecked ? styles.checked : ''}
+                                ${error.length ? styles.error : ''}
+                                ${isEditing ? styles.editing : ""} 
+                                ${styles.label}`}
                 />)
                 :
-                (<label className={isChecked ? "checked label" : 'label'}>{updatedToDo}</label>)
+                (<label className={`${styles.label} ${isChecked ? styles.checked : ''}`}>
+                    {updatedToDo}
+                </label>)
             }
-            {error && <span className='error-field'>{error}</span>}
+            {error && <span className={styles.errorField}>{error}</span>}
 
 
-            <div className='button-wrapper'>
+            <div className={styles.buttonWrapper}>
                 <button onClick={handleUpdate}
-                    type="button" className="btn btn--edit" >
+                    type="button" className={styles.btn} >
                     {isEditing ? "Save" : "Edit"}
                 </button>
                 <button onClick={handleDelete}
-                    type="button" className="btn btn--delete">
+                    type="button" className={styles.btn}>
                     Delete
                 </button>
             </div>

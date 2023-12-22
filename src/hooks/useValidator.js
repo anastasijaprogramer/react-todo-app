@@ -15,8 +15,7 @@ function useValidator()
 
         validationTimeout = setTimeout(() =>
         {
-            const fieldErrors = rules.map(rule => rule(value)).
-                filter(error => error)
+            const fieldErrors = rules.map(rule => rule(value)).filter(error => error)
 
             setError(fieldErrors);
 

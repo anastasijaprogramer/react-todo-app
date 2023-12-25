@@ -2,12 +2,17 @@ import React, { useContext } from 'react';
 import AddTodo from '../../components/AddTodo/AddTodo';
 import TodoList from '../../components/TodoList/TodoList';
 import { TodosContext } from "../../contexts/TodosContext";
+import useRandomImage from '../../hooks/useRandomImage';
+
+import styles from "./home.module.scss";
 
 const Home = () =>
 {
-    const { getTodos, setTodos } = useContext(TodosContext);
-    const key = 'todos';
+    const { getTodos, setTodos} = useContext(TodosContext);
+    const {imageUrl, isLoading, error, getRandomImage} = useRandomImage();
 
+    const key = 'todos';
+    
     //get value from local storage
     const todos = getTodos(key);
 
@@ -19,7 +24,10 @@ const Home = () =>
             return;
         }
 
-        setTodos([...todos, { id: Date.now(), text: newTodo, isCompleted: false }], key)
+        setTodos([...todos, { id: Date.now(), text: newTodo, isCompleted: false }], key);
+
+        getRandomImage();
+
     }
 
     // handle delete todo
@@ -44,6 +52,9 @@ const Home = () =>
         <>
             <h1>Home</h1>
             <AddTodo onAddTodo={handleAdd} />
+            {!isLoading && !error && <img className={styles.img} src={imageUrl.message} alt='img'/>}
+            {isLoading && <span>Loading...</span>}
+            {error && <span>Error occured while fetching an image</span>}
 
             <TodoList todos={todos}
                 onDeleteTodo={handleDelete}

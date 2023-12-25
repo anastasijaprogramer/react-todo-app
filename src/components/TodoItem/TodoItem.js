@@ -53,6 +53,8 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
 
             <input type="checkbox" onChange={handleChecked} checked={isChecked} />
 
+            <img src='https://images.dog.ceo/breeds/bulldog-boston/n02096585_2008.jpg'/>
+
             {isEditing ?
                 (<input
                     value={updatedToDo}

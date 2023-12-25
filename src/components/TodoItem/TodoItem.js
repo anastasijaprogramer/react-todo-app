@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import styles from './TodoItem.module.scss';
 import useValidator from '../../hooks/useValidator';
+import styles from './TodoItem.module.scss';
+import btnStyles from '../../styles/btn.module.scss'
 
 const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
 {
@@ -71,11 +72,11 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
 
             <div className={styles.buttonWrapper}>
                 <button onClick={handleUpdate}
-                    type="button" className={styles.btn} >
+                    type="button" className={btnStyles.btn} >
                     {isEditing ? "Save" : "Edit"}
                 </button>
                 <button onClick={handleDelete}
-                    type="button" className={styles.btn}>
+                    type="button" className={btnStyles.btn}>
                     Delete
                 </button>
             </div>

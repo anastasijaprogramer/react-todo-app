@@ -1,0 +1,10 @@
+.routes {
+  display: flex;
+  gap: 20px;
+  list-style-type: none;
+  margin: 15px 0;
+  padding: 0;
+}
+.routesItem a {
+  color: #dadce0;
+}

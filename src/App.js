@@ -4,7 +4,7 @@ import { TodosProvider } from './contexts/TodosContext';
 import NavigationMenu from "./components/NavigationMenu/NavigationMenu";
 import Home from "./containers/Home/Home";
 import TodoListPage from "./containers/TodoListPage/TodoListPage";
-import './App.scss';
+import style from './App.module.scss';
 
 function App()
 {
@@ -12,9 +12,9 @@ function App()
   return (
     <TodosProvider >
       <Router>
-        <div className="app">
+        <div className={style.app}>
           <NavigationMenu />
-          <div className="app-wrapper">
+          <div className={style.appWrapper}>
             <Routes>
               <Route index element={<Home />} />
               <Route path="/todos" element={<TodoListPage />} />

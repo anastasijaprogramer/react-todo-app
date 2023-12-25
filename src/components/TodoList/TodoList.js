@@ -1,12 +1,12 @@
 import React from 'react';
 import TodoItem from '../TodoItem/TodoItem';
-import "./todoList.scss";
+import styles from "./todoList.module.scss";
 
 const TodoList = ({ todos, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
 {
 
     return (
-        <ul className='result-list'>
+        <ul className={styles.resultList}>
             {todos
                 .sort((a, b) => a.isCompleted - b.isCompleted)
                 .map(todo => (

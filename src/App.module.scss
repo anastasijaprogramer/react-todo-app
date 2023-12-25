@@ -7,12 +7,13 @@
   justify-content: flex-start;
   color: #dadce0;
 
-}
 
-.app-wrapper {
-  margin-top: 32px;
-  width: 100%;
-  margin-inline: auto;
-  max-width: 765px;
-  padding: 0 20px 32px;
+  &Wrapper {
+    margin-top: 32px;
+    width: 100%;
+    margin-inline: auto;
+    max-width: 765px;
+    padding: 0 20px 32px;
+  }
+
 }

@@ -2,12 +2,14 @@ import React, { useContext } from 'react';
 import AddTodo from '../../components/AddTodo/AddTodo';
 import TodoList from '../../components/TodoList/TodoList';
 import { TodosContext } from "../../contexts/TodosContext";
-import "./home.scss";
 
 const Home = () =>
 {
     const { getTodos, setTodos } = useContext(TodosContext);
-    const todos = getTodos();
+    const key = 'todos';
+
+    //get value from local storage
+    const todos = getTodos(key);
 
     // handle add todo
     const handleAdd = (newTodo) =>
@@ -17,30 +19,29 @@ const Home = () =>
             return;
         }
 
-        setTodos([...todos, { id: Date.now(), text: newTodo, isCompleted: false }])
+        setTodos([...todos, { id: Date.now(), text: newTodo, isCompleted: false }], key)
     }
 
     // handle delete todo
     const handleDelete = (id) =>
     {
-        setTodos(todos.filter(todo => todo.id !== id));
+        setTodos(todos.filter(todo => todo.id !== id), key);
     }
 
     // handle update todo
     const handleUpdate = (id, newText) =>
     {
-        setTodos(todos.map(todo => todo.id === id ? { ...todo, text: newText } : todo));
+        setTodos(todos.map(todo => todo.id === id ? { ...todo, text: newText } : todo), key);
     }
 
     // handle complete todo
     const handleComplete = (id, isCompleted) =>
     {
-        setTodos(todos.map(todo => todo.id === id ? { ...todo, isCompleted: isCompleted } : todo));
+        setTodos(todos.map(todo => todo.id === id ? { ...todo, isCompleted: isCompleted } : todo), key);
     }
 
     return (
         <>
-
             <h1>Home</h1>
             <AddTodo onAddTodo={handleAdd} />
 

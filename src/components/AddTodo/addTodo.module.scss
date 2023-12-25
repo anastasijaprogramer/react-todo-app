@@ -4,7 +4,7 @@ form {
     align-items: center;
     margin-bottom: 32px;
 
-    .add-todo-input {
+    .addTodoInput {
         min-height: 46px;
         padding: 12px 16px 12px 16px;
 
@@ -24,11 +24,9 @@ form {
 
     }
 
-    .btn--submit {
-        margin-left: 20px;
-    }
 
-    .error-field {
+
+    .errorField {
         position: absolute;
         top: 100%;
         padding-top: 5px;
@@ -37,4 +35,7 @@ form {
         padding-left: 17px;
         color: red;
     }
+
+
+ 
 }

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import "./addTodo.scss";
+import styles from "./addTodo.module.scss";
+import btnStyles from '../../styles/btn.module.scss'
 
 const AddTodo = ({ onAddTodo }) =>
 {
@@ -35,15 +36,15 @@ const AddTodo = ({ onAddTodo }) =>
             <input
                 type="text"
                 ref={inputRef}
-                className={`add-todo-input ${isOverLimit ? "error" : ""}`}
+                className={`${styles.addTodoInput} ${isOverLimit ? styles.error : ""}`}
                 placeholder='add todo'
                 onChange={e => handleInputValidation(e.target.value)}
             />
-            {isOverLimit && <span className='error-field'>Text must not exceed 20 characters</span>}
-            <button type="submit" className='btn btn--submit' >
+            {isOverLimit && <span className={styles.errorField}>Text must not exceed 20 characters</span>}
+            <button type="submit" className={`${btnStyles.btn} ${btnStyles.btnSubmit}`}  >
                 Add
             </button>
-        </form>
+        </form >
     );
 }
 

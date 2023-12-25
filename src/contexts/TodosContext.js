@@ -5,7 +5,7 @@ export const TodosContext = createContext();
 
 export const TodosProvider = ({ children }) =>
 {
-    const [getTodos, setTodos] = useLocalStorage('todos', []);
+    const [getTodos, setTodos] = useLocalStorage();
 
     return (
         <TodosContext.Provider value={{ getTodos, setTodos }}>

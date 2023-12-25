@@ -1,29 +1,35 @@
 import {useState, useEffect, useCallback} from 'react';
+import fallbackImage from '../assets/images/fallback-image.jpg';
+
+
 
 const useRandomImage = () => {
-    const [imageUrl, setImageUrl] = useState(null);
-    const [isLoading, setisLoading] = useState(false);
+    const [imageUrl, setImageUrl] = useState(fallbackImage);
+    const [isLoading, setisLoading] = useState(true);
     const [error, setError] = useState(null);
     const apiUrl = "https://dog.ceo/api/breeds/image/random";
+    
 
     const getRandomImage =  useCallback(async () => {
-        setisLoading(true)
        try {
-            const response = await fetch(apiUrl);
-            const data = await response.json();
-            setImageUrl(data);
-            console.log(data)
+            let response =  await fetch(apiUrl);
+            let data = await response.json();
+
+               setImageUrl(data);
+           
        } catch (error) {
-            console.log(error)
-            setError(true)
+            console.log(error);
+            setError(true);
+            setImageUrl(fallbackImage); 
        }
        finally{
-        console.log('finished fetching image')
-            setisLoading(false)
+          setisLoading(false)
        }
-    }, [apiUrl])
+    }, [imageUrl])
 
-    return {imageUrl, isLoading, error, getRandomImage}
+   
+     return [imageUrl, isLoading, error, getRandomImage]
+     
  
 }
 

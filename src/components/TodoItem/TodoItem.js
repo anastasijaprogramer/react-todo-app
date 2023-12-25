@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import useValidator from '../../hooks/useValidator';
 import styles from './TodoItem.module.scss';
-import btnStyles from '../../styles/btn.module.scss'
+import btnStyles from '../../styles/btn.module.scss';
+
 
 const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
 {
@@ -51,10 +52,15 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
     return (
         <li className={styles.listItem}>
 
+
             <input type="checkbox" onChange={handleChecked} checked={isChecked} />
-
-            <img src='https://images.dog.ceo/breeds/bulldog-boston/n02096585_2008.jpg'/>
-
+            {todo.image && <img  src={todo.image.message} className={styles.image}/>}
+  {/* {
+            !todo.randomImage.isLoading && !todo.randomImage.error && todo.randomImage.imageUrl && 
+            <img className={styles.img} src={todo.randomImage.imageUrl.message} alt='img'/>
+            } */}
+            {/* {randomImage.isLoading && <span>Loading...</span>}
+            {randomImage.error && <span>Error occured while fetching an image</span>}  */}
             {isEditing ?
                 (<input
                     value={updatedToDo}

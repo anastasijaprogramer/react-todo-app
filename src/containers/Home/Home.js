@@ -1,40 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import AddTodo from '../../components/AddTodo/AddTodo';
 import TodoList from '../../components/TodoList/TodoList';
-import { TodosContext } from "../../contexts/TodosContext";
 import useRandomImage from '../../hooks/useRandomImage';
-
+import { TodosContext } from "../../contexts/TodosContext";
 
 const Home = () =>
 {
     const { getTodos, setTodos} = useContext(TodosContext);
-    const [imageUrl, isLoading, error, getRandomImage] = useRandomImage();
-
     const key = 'todos';
-    
+
+
     //get value from local storage
     const todos = getTodos(key);
 
     // handle add todo
-    const handleAdd = async (newTodo) =>
+    const handleAdd =  (newTodo) =>
     {
         if (todos.length >= 10) {
             alert('The maximum number of todos is reached')
             return;
         }
         
-        try {
-            await getRandomImage(); //wait for image to be loaded
-
-            if(!error && !isLoading){
-                console.log(isLoading, error, imageUrl)
-                setTodos([...todos, { id: Date.now(), text: newTodo, isCompleted: false, image: imageUrl}], key);
-            }
-            
-        } catch (error) {
-            console.error("Error fetching image: ", error);
-        }
-     
+        setTodos([...todos, { id: Date.now(), text: newTodo, isCompleted: false}], key);
     }
 
     // handle delete todo
@@ -46,7 +33,7 @@ const Home = () =>
     // handle update todo
     const handleUpdate = (id, newText) =>
     {
-        setTodos(todos.map(todo => todo.id === id ? { ...todo, text: newText } : todo), key);
+        setTodos(todos.map(todo => todo.id === id ? { ...todo, text: newText.txt, image: newText.image } : todo), key);
     }
 
     // handle complete todo
@@ -59,7 +46,8 @@ const Home = () =>
         <>
             <h1>Home</h1>
             <AddTodo onAddTodo={handleAdd} />
-            <TodoList todos={todos}
+            <TodoList 
+                todos={todos}
                 onDeleteTodo={handleDelete}
                 onUpdateTodo={handleUpdate}
                 onCompleteTodo={handleComplete} 

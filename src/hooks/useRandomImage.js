@@ -1,36 +1,32 @@
-import {useState, useEffect, useCallback} from 'react';
-import fallbackImage from '../assets/images/fallback-image.jpg';
-
+import {useState,  useCallback} from 'react';
 
 
 const useRandomImage = () => {
-    const [imageUrl, setImageUrl] = useState(fallbackImage);
-    const [isLoading, setisLoading] = useState(true);
+    const [imageUrl, setImageUrl] = useState(null);
+    const [isLoading, setIsLoading] = useState(null);
     const [error, setError] = useState(null);
     const apiUrl = "https://dog.ceo/api/breeds/image/random";
     
-
     const getRandomImage =  useCallback(async () => {
-       try {
-            let response =  await fetch(apiUrl);
-            let data = await response.json();
-
-               setImageUrl(data);
-           
-       } catch (error) {
-            console.log(error);
-            setError(true);
-            setImageUrl(fallbackImage); 
-       }
-       finally{
-          setisLoading(false)
-       }
-    }, [imageUrl])
-
+      setIsLoading(true);
+      setError(false);
+      
+      try {
+         let response =  await fetch(apiUrl);
+         let data = await response.json();
+         setImageUrl(data.message);
+      } catch (error) {
+         console.log(error);
+         setError(true);
+      }
+      finally{
+            setIsLoading(false);
+      }
+       
+     }, [])
    
-     return [imageUrl, isLoading, error, getRandomImage]
-     
- 
+
+      return [imageUrl, isLoading, error, getRandomImage]
 }
 
 export default useRandomImage;

@@ -1,32 +1,37 @@
-import {useState,  useCallback} from 'react';
-
+import { useState, useEffect } from 'react';
 
 const useRandomImage = () => {
-    const [imageUrl, setImageUrl] = useState(null);
-    const [isLoading, setIsLoading] = useState(null);
-    const [error, setError] = useState(null);
-    const apiUrl = "https://dog.ceo/api/breeds/image/random";
-    
-    const getRandomImage =  useCallback(async () => {
-      setIsLoading(true);
-      setError(false);
-      
-      try {
-         let response =  await fetch(apiUrl);
-         let data = await response.json();
-         setImageUrl(data.message);
-      } catch (error) {
-         console.log(error);
-         setError(true);
-      }
-      finally{
-            setIsLoading(false);
-      }
-       
-     }, [])
-   
+  const [imageUrl, setImageUrl] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const url = "https://dog.ceo/api/breeds/image/random";
 
-      return [imageUrl, isLoading, error, getRandomImage]
-}
+  useEffect(() => {
+   fetchData();
+ }, []); 
+ 
+  const fetchData = async () => {
+    setIsLoading(true);
+
+   try {
+
+      const res = await fetch(url);
+      if(!res.ok){
+         throw new Error(`Failed to fetch data: ${res.status}`);
+      }
+      const data = await res.json();
+      setImageUrl(data.message);
+   
+      } catch (error) {
+         setError(error.message);
+      } 
+      finally{
+         setIsLoading(false)
+      }
+
+ };
+
+  return { imageUrl, isLoading, error, fetchData };
+};
 
 export default useRandomImage;

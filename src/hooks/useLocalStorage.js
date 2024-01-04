@@ -17,6 +17,7 @@ function useLocalStorage() {
         try {
             localStorage.setItem(key, JSON.stringify(value));
             setStoredValue(value);
+           // console.log('store', value)
         } catch (error) {
             console.error(`Error writing localStorage key "${key}":`, error);
         }

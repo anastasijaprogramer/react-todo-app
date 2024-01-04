@@ -1,29 +1,58 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState} from 'react';
 import AddTodo from '../../components/AddTodo/AddTodo';
 import TodoList from '../../components/TodoList/TodoList';
-import useRandomImage from '../../hooks/useRandomImage';
 import { TodosContext } from "../../contexts/TodosContext";
+import useRandomImage from '../../hooks/useRandomImage';
 
 const Home = () =>
 {
     const { getTodos, setTodos} = useContext(TodosContext);
+    const { imageUrl, isLoading, error, fetchData} = useRandomImage();
+    const [id, setId] = useState(null);
     const key = 'todos';
-
 
     //get value from local storage
     const todos = getTodos(key);
 
+    useEffect(() => {
+        if (todos.length > 0) {
+            setTodos(todos.map((todo) =>
+              todo.id === id ?  { ...todo, isLoading: isLoading } : todo), key
+          );
+        }
+      }, [isLoading, id]);
+
+
     // handle add todo
-    const handleAdd =  (newTodo) =>
-    {
+    const handleAdd =  async (newTodoTxt) => {
+        
         if (todos.length >= 10) {
             alert('The maximum number of todos is reached')
             return;
         }
         
-        setTodos([...todos, { id: Date.now(), text: newTodo, isCompleted: false}], key);
+        const newId = Date.now();
+        setId(newId);
+        
+        
+        // Fetch the random image
+        fetchData();
+        
+        // Add the new todo to the list
+        setTodos([
+            ...todos,
+            {
+            id: newId,
+            text: newTodoTxt,
+            isCompleted: false,
+            image: { imageUrl: imageUrl, error: error },
+            isLoading: true
+            }
+        ], key);
+        
     }
 
+  
     // handle delete todo
     const handleDelete = (id) =>
     {
@@ -33,7 +62,7 @@ const Home = () =>
     // handle update todo
     const handleUpdate = (id, newText) =>
     {
-        setTodos(todos.map(todo => todo.id === id ? { ...todo, text: newText.txt, image: newText.image } : todo), key);
+        setTodos(todos.map(todo => todo.id === id ? { ...todo, text: newText} : todo), key);
     }
 
     // handle complete todo
@@ -42,16 +71,19 @@ const Home = () =>
         setTodos(todos.map(todo => todo.id === id ? { ...todo, isCompleted: isCompleted } : todo), key);
     }
 
+
     return (
         <>
             <h1>Home</h1>
-            <AddTodo onAddTodo={handleAdd} />
+            <AddTodo onAddTodo={handleAdd}
+                    />
             <TodoList 
                 todos={todos}
                 onDeleteTodo={handleDelete}
                 onUpdateTodo={handleUpdate}
                 onCompleteTodo={handleComplete} 
-                />
+                 />
+                
         </>
     );
 }

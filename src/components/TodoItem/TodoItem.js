@@ -3,7 +3,7 @@ import useValidator from '../../hooks/useValidator';
 import styles from './TodoItem.module.scss';
 import btnStyles from '../../styles/btn.module.scss';
 import fallbackImage from '../../assets/images/fallback-image.jpg';
-import useRandomImage from '../../hooks/useRandomImage';
+
 
 const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
 {
@@ -11,25 +11,12 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
     const [isEditing, setIsEditing] = useState(false);
     const [updatedToDo, setUpdatedToDo] = useState(todo.text);
     const [getValidation, setValidation] = useValidator();
-    const [imageUrl, isLoading, error, getRandomImage] = useRandomImage();
     const validationError = getValidation();
-
-     useEffect(() => {
-        getRandomImage();
-     }, []); 
-
-    // useEffect(() => {
-    //     if (!isLoading && imageUrl) {
-    //         // Update the todo item with the new image URL
-    //         onUpdateTodo(todo.id, { ...todo, image: { imageUrl, isLoading: false, error: null } });
-    //     }
-    // }, [isLoading,  error, ]);
 
     useEffect(() =>
     {
         onCompleteTodo(todo.id, isChecked);
     }, [todo.id, isChecked]);
-
 
     const handleChecked = () =>
     {
@@ -60,21 +47,16 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
         setUpdatedToDo(inputValue);
         setValidation(inputValue, validationRules);
     }
- 
+ //onError={(e) => e.target.src = fallbackImage}
     return (
         <li className={styles.listItem}>
 
             <input type="checkbox" onChange={handleChecked} checked={isChecked} />
+             {todo.image && todo.image.imageUrl  && !todo.isLoading &&
+             <img className={styles.image} src={todo.image.imageUrl} />}
+            {todo.isLoading && <span>Loading...</span>}
+            {todo.error && <span>Error loading image</span>}  
             
-            {imageUrl && <img className={styles.image} src={imageUrl} 
-            alt="Todo" onError={(e) => e.target.src = fallbackImage} />}
-            {isLoading && <span>Loading image...</span>}
-            {error && <span>Error loading image</span>} 
-
-             {/* {todo.image && <img className={styles.image} src={todo.image.imageUrl} 
-            alt="Todo" onError={(e) => e.target.src = fallbackImage} />}
-            {isLoading && <span>Loading image...</span>}
-            {error && <span>Error loading image</span>}  */}
 
             {isEditing ?
                 (<input
@@ -84,7 +66,7 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
                                 ${validationError.length ? styles.error : ''}
                                 ${isEditing ? styles.editing : ""} 
                                 ${styles.label}`}
-                />)
+                />) 
                 :
                 (<label className={`${styles.label} ${isChecked ? styles.checked : ''}`}>
                     {updatedToDo}

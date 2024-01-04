@@ -1,15 +1,14 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from "./addTodo.module.scss";
 import btnStyles from '../../styles/btn.module.scss'
 
 const AddTodo = ({ onAddTodo }) =>
 {
     const [isOverLimit, setIsOverLimit] = useState(null);
-
     const inputRef = useRef(null);
 
     const handleSubmit = (e) =>
-    {
+    { 
         e.preventDefault();
         const inputValue = inputRef.current.value.trim();
 
@@ -22,8 +21,8 @@ const AddTodo = ({ onAddTodo }) =>
         if (isOverLimit) {
             inputRef.current.focus();
         }
-
     }
+
 
     const handleInputValidation = (inputValue) =>
     {

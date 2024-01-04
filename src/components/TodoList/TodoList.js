@@ -2,7 +2,7 @@ import React from 'react';
 import TodoItem from '../TodoItem/TodoItem';
 import styles from "./todoList.module.scss";
 
-const TodoList = ({ todos, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
+const TodoList = ({ todos, onDeleteTodo, onUpdateTodo, onCompleteTodo}) =>
 {
 
     return (
@@ -14,7 +14,8 @@ const TodoList = ({ todos, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
                         todo={todo}
                         onDeleteTodo={onDeleteTodo}
                         onUpdateTodo={onUpdateTodo}
-                        onCompleteTodo={onCompleteTodo} />
+                        onCompleteTodo={onCompleteTodo}
+                       />
                 ))}
         </ul>
     );

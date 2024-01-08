@@ -47,7 +47,7 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
         setUpdatedToDo(inputValue);
         setValidation(inputValue, validationRules);
     }
- //onError={(e) => e.target.src = fallbackImage}
+
     return (
         <li className={styles.listItem}>
 

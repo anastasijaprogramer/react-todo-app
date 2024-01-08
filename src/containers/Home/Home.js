@@ -34,12 +34,12 @@ const Home = () =>
         const newId = Date.now();
         setId(newId);
         
-        
         // Fetch the random image
         fetchData();
         
         // Add the new todo to the list
-        setTodos([
+        //while we wait for isLoading to update, set it to true
+         setTodos([
             ...todos,
             {
             id: newId,
@@ -56,6 +56,7 @@ const Home = () =>
     // handle delete todo
     const handleDelete = (id) =>
     {
+
         setTodos(todos.filter(todo => todo.id !== id), key);
     }
 

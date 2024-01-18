@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import useValidator from '../../hooks/useValidator';
 import styles from './TodoItem.module.scss';
 import btnStyles from '../../styles/btn.module.scss';
-import fallbackImage from '../../assets/images/fallback-image.jpg';
-
 
 const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
 {
@@ -53,7 +51,7 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
 
             <input type="checkbox" onChange={handleChecked} checked={isChecked} />
              {todo.image && todo.image.imageUrl  && !todo.isLoading &&
-             <img className={styles.image} src={todo.image.imageUrl} />}
+             <img className={styles.image} src={todo.image.imageUrl} alt='todo-img'/>}
             {todo.isLoading && <span>Loading...</span>}
             
             {todo.error && <span>Error loading image</span>}  

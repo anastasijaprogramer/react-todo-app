@@ -24,7 +24,7 @@ const TodoListPage = () =>
                             <li className={todoItemStyles.listItem}
                                 key={todo.id}>
                                 {todo.image && todo.image.imageUrl && !todo.isLoading &&
-                                    <img className={styles.image} src={todo.image.imageUrl} />}
+                                <img className={styles.image} src={todo.image.imageUrl} alt='todo-img'/>}
                                 {todo.isLoading && <span>Loading...</span>}
 
                                 {todo.error && <span>Error loading image</span>}

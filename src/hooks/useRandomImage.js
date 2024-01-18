@@ -28,7 +28,7 @@ const useRandomImage = () =>
       finally {
          setIsLoading(false);
       }
-   });
+   }, [url]);
 
    const refetch = () =>
    {

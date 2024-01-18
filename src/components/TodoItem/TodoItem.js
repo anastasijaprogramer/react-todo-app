@@ -55,6 +55,7 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo, onCompleteTodo }) =>
              {todo.image && todo.image.imageUrl  && !todo.isLoading &&
              <img className={styles.image} src={todo.image.imageUrl} />}
             {todo.isLoading && <span>Loading...</span>}
+            
             {todo.error && <span>Error loading image</span>}  
             
 

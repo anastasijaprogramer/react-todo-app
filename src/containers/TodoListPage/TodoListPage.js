@@ -16,21 +16,23 @@ const TodoListPage = () =>
         <div>
             <h1>Todo List</h1>
             <ul className={todoListStyles.resultList}>
-                {todos.map((todo) =>
-                {
-                    return (
-                        <li className={todoItemStyles.listItem}
-                            key={todo.id}>
-                            {todo.image && todo.image.imageUrl  && !todo.isLoading &&
-                            <img className={styles.image} src={todo.image.imageUrl} />}
-                            {todo.isLoading && <span>Loading...</span>}
-                            
-                            {todo.error && <span>Error loading image</span>}  
-                            
-                            <label className={`${todoItemStyles.label} ${todo.isCompleted ? todoItemStyles.checked : ''}`}>{todo.text}</label>
-                        </li>
-                    )
-                })}
+                {todos
+                    .sort((a, b) => a.isCompleted - b.isCompleted)
+                    .map((todo) =>
+                    {
+                        return (
+                            <li className={todoItemStyles.listItem}
+                                key={todo.id}>
+                                {todo.image && todo.image.imageUrl && !todo.isLoading &&
+                                    <img className={styles.image} src={todo.image.imageUrl} />}
+                                {todo.isLoading && <span>Loading...</span>}
+
+                                {todo.error && <span>Error loading image</span>}
+
+                                <label className={`${todoItemStyles.label} ${todo.isCompleted ? todoItemStyles.checked : ''}`}>{todo.text}</label>
+                            </li>
+                        )
+                    })}
             </ul>
         </div>
     );
